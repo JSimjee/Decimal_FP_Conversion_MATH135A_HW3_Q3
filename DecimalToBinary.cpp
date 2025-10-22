@@ -39,8 +39,8 @@ int main() {
   for (i; i < inputNumber.size(); i++) { // inputNumber could not have a decimal at all
     fractionalPartString.push_back(inputNumber.at(i));
   }
-  fractionalPartString.clear()
   int fractionalPart = stoi(fractionalPartString);
+  fractionalPartString.clear();
 
   cout << "Converting " << integerPartString << '.' << fractionalPartString << " to single-precision floating-point representation.\n";
 
@@ -56,10 +56,29 @@ int main() {
   for (i = 0; i < integerPartInBinary.size(); i++) {
     integerPartString.push_back(integerPartInBinary.at(i) + 48); // Add 48 to convert it to ASCII representation
   }
+  
+  cout << integerPartString << ',' << fractionalPart << '\n';
 
+  vector<int> fractionalPartInBinary;
+  while (fractionalPart != 0) {
+    fractionalPart *= 2;
+    if (fractionalPart >= 1) {
+      remainder = 1;
+      fractionalPart -= 1;
+    }
+    else {
+      remainder = 0;
+    }
+    fractionalPartInBinary.push_back(remainder);
+    cout << fractionalPart << '\n';
+  }
 
+  for (i = 0; i < fractionalPartInBinary.size(); i++) {
+    fractionalPartString.push_back(fractionalPartInBinary.at(i) + 48);
+  }
 
   cout << "Integer part in binary: " << integerPartString << '\n';
+  cout << "Fractional part in binary: " << fractionalPartString << '\n';
 
 
 
